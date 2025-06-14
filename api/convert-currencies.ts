@@ -45,9 +45,9 @@ const handleCurrencyConversion = async ({
   }
 
   // Convert the from amount to Euro
-  const amountInEur = amount * list.eur[from]
+  const amountInEur = amount / list.eur[from]
   // Convert the Euro amount to the to currency
-  const convertedAmount = amountInEur / list.eur[to]
+  const convertedAmount = amountInEur * list.eur[to]
   return {
     status: 200,
     body: {
