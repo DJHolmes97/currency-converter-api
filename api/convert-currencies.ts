@@ -37,7 +37,7 @@ const handleCurrencyConversion = async ({
   }
 
   // Throw an error if the from or to currency is not in the list
-  if (!list[from] || !list[to]) {
+  if (!list.eur[from] || !list.eur[to]) {
     return {
       status: 400,
       body: { error: "Invalid currency code" },
