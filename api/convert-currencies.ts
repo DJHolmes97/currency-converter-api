@@ -52,7 +52,7 @@ const handleCurrencyConversion = async ({
     status: 200,
     body: {
       original: amount,
-      converted: convertedAmount.toFixed(2),
+      converted: convertedAmount,
       from,
       to,
     },
