@@ -4,20 +4,21 @@ const fetchCurrencyList = async () => {
   const response = await fetch(
     "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json"
   ).then((res) => res.json())
-  console.log(response)
   if (!response) {
     const secondResponse = await fetch(
       "https://latest.currency-api.pages.dev/v1/currencies.json"
     ).then((res) => res.json())
-    console.log(secondResponse)
     return secondResponse
   }
   return response
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  console.log("Fetching currency list...")
   const list = await fetchCurrencyList()
-  console.log(list)
-  return res.json({ list })
+  return res.json({
+    status: 200,
+    body: {
+      list,
+    },
+  })
 }
