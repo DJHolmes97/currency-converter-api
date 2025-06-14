@@ -20,5 +20,5 @@ export default function handler(req: VercelRequest, res: VercelResponse) {
   const list = fetchCurrencyList().then((data) => {
     console.log(data)
   })
-  return res.json(list)
+  return res.json({ list: list })
 }
