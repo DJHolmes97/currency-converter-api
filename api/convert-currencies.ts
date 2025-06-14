@@ -51,7 +51,8 @@ const handleCurrencyConversion = async ({
   return {
     status: 200,
     body: {
-      amount: convertedAmount.toFixed(2),
+      original: amount,
+      converted: convertedAmount.toFixed(2),
       from,
       to,
     },
