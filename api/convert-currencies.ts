@@ -64,5 +64,5 @@ export default async function handler(req, res) {
   const { amount, from, to } = req.query
 
   // Use the new function to handle conversion and response
-  return handleCurrencyConversion({ amount, from, to, list })
+  return await handleCurrencyConversion({ amount, from, to, list })
 }
