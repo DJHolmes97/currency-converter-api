@@ -15,10 +15,9 @@ const fetchCurrencyList = async () => {
   return response
 }
 
-export default function handler(req: VercelRequest, res: VercelResponse) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   console.log("Fetching currency list...")
-  const list = fetchCurrencyList().then((data) => {
-    console.log(data)
-  })
-  return res.json({ list: list })
+  const list = await fetchCurrencyList()
+  console.log(list)
+  return res.json({ list })
 }
