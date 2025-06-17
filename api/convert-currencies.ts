@@ -80,5 +80,5 @@ export default async function handler(req, res) {
     to: to,
     list,
   })
-  return res.json(response)
+  return res.status(response.statusCode).send(response.body)
 }
