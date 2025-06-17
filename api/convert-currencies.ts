@@ -60,9 +60,18 @@ const handleCurrencyConversion = async ({
 }
 
 export default async function handler(req, res) {
-  const list = await getCurrencyListWithEurBase()
   // Get the currencys being converted from the query parameters
   const { amount, from, to } = req.query
+  const API_TOKEN = req.headers["x-api-token"]
+
+  if (API_TOKEN !== process.env.API_TOKEN) {
+    return res.status(401).json({
+      status: 401,
+      body: { error: "Unauthorized" },
+    })
+  }
+
+  const list = await getCurrencyListWithEurBase()
 
   // Use the new function to handle conversion and response
   const response = await handleCurrencyConversion({
