@@ -31,7 +31,7 @@ const handleCurrencyConversion = async ({
   // Throw an error if the amount is not a number
   if (isNaN(amount)) {
     return {
-      status: 400,
+      statusCode: 400,
       body: { error: "Invalid amount" },
     }
   }
@@ -39,7 +39,7 @@ const handleCurrencyConversion = async ({
   // Throw an error if the from or to currency is not in the list
   if (!list.eur[from] || !list.eur[to]) {
     return {
-      status: 400,
+      statusCode: 400,
       body: { error: "Invalid currency code" },
     }
   }
@@ -49,7 +49,7 @@ const handleCurrencyConversion = async ({
   // Convert the Euro amount to the to currency
   const convertedAmount = amountInEur * list.eur[to]
   return {
-    status: 200,
+    statusCode: 200,
     body: {
       original: amount,
       converted: convertedAmount.toFixed(2),
@@ -66,7 +66,7 @@ export default async function handler(req, res) {
 
   if (API_TOKEN !== process.env.API_TOKEN) {
     return res.status(401).json({
-      status: 401,
+      statusCode: 401,
       body: { error: "Unauthorized" },
     })
   }

@@ -18,14 +18,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (API_TOKEN !== process.env.API_TOKEN) {
     return res.status(401).json({
-      status: 401,
+      statusCode: 401,
       body: { error: "Unauthorized" },
     })
   }
 
   const list = await fetchCurrencyList()
   return res.json({
-    status: 200,
+    statusCode: 200,
+    headers: {
+      ACCESS_CONTROL_ALLOW_ORIGIN: "*",
+    },
     body: {
       list,
     },
