@@ -23,5 +23,5 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const list = await fetchCurrencyList()
-  return res.status(200).json(list)
+  return res.status(200).json(list).end()
 }
