@@ -1,4 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node"
+import { getEnv } from "@vercel/functions"
 
 const fetchCurrencyList = async () => {
   const response = await fetch(
@@ -20,14 +21,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).send("Preflight response")
   }
 
-  console.log("API_TOKEN", API_TOKEN)
-  console.log("req.headers", req.headers)
+  const { API_TOKEN: envApiToken } = getEnv()
 
-  // if (API_TOKEN !== process.env.API_TOKEN && req.method !== "OPTIONS") {
-  //   return res.status(401).json({
-  //     error: "Unauthorized",
-  //   })
-  // }
+  if (API_TOKEN !== envApiToken && req.method !== "OPTIONS") {
+    return res.status(401).json({
+      error: "Unauthorized",
+    })
+  }
 
   const list = await fetchCurrencyList()
   return res.status(200).json(list)
