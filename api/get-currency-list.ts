@@ -20,6 +20,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).send("Preflight response")
   }
 
+  console.log("API_TOKEN", API_TOKEN)
+  console.log("req.headers", req.headers)
+
   // if (API_TOKEN !== process.env.API_TOKEN && req.method !== "OPTIONS") {
   //   return res.status(401).json({
   //     error: "Unauthorized",
