@@ -24,7 +24,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const list = await fetchCurrencyList()
-  return res.json({
+  return res.status(200).json({
     statusCode: 200,
     headers: {
       ACCESS_CONTROL_ALLOW_ORIGIN: "*",
