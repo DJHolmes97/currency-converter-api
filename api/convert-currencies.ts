@@ -47,7 +47,15 @@ export default async function handler(req, res) {
   const { amount, from, to } = req.query
   const API_TOKEN = req.headers["x-api-token"]
 
-  if (API_TOKEN !== process.env.NEXT_PUBLIC_API_TOKEN) {
+  // Check if the request method is OPTIONS for preflight requests
+  if (req.method === "OPTIONS") {
+    return res.status(200).send("Preflight response")
+  }
+
+  if (
+    API_TOKEN !== process.env.NEXT_PUBLIC_API_TOKEN &&
+    req.method !== "OPTIONS"
+  ) {
     return res.status(401).json({
       statusCode: 401,
       body: { error: "Unauthorized" },
