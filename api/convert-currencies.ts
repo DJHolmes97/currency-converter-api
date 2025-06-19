@@ -47,7 +47,7 @@ export default async function handler(req, res) {
   const { amount, from, to } = req.query
   const API_TOKEN = req.headers["x-api-token"]
 
-  if (API_TOKEN !== process.env.API_TOKEN) {
+  if (API_TOKEN !== process.env.NEXT_PUBLIC_API_TOKEN) {
     return res.status(401).json({
       statusCode: 401,
       body: { error: "Unauthorized" },
