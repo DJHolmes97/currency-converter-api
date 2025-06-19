@@ -1,5 +1,4 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node"
-import { getEnv } from "@vercel/functions"
 
 const fetchCurrencyList = async () => {
   const response = await fetch(
@@ -21,7 +20,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(200).send("Preflight response")
   }
 
-  const { API_TOKEN: envApiToken } = getEnv()
+  const envApiToken = process.env.NEXT_PUBLIC_API_TOKEN
 
   if (API_TOKEN !== envApiToken && req.method !== "OPTIONS") {
     return res.status(401).json({
