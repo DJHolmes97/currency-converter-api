@@ -1,15 +1,10 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node"
 
 const fetchCurrencyList = async () => {
-  const response = await fetch(
-    "https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies.json"
-  ).then((res) => res.json())
-  if (!response) {
-    const secondResponse = await fetch(
-      "https://latest.currency-api.pages.dev/v1/currencies.json"
-    ).then((res) => res.json())
-    return secondResponse
-  }
+  const response = await fetch("https://api.vatcomply.com/currencies").then(
+    (res) => res.json()
+  )
+
   return response
 }
 
