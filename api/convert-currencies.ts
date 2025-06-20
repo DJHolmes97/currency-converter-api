@@ -13,8 +13,6 @@ const handleCurrencyConversion = async ({
     `https://api.vatcomply.com/rates?base=${from.toUpperCase()}&symbols=${to.toUpperCase()}`
   ).then((res) => res.json())
 
-  console.log("Response from API:", response)
-
   // Throw an error if the amount is not a number
   if (isNaN(amount)) {
     return {
