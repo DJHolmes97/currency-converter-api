@@ -61,12 +61,14 @@ export default async function handler(req, res) {
       body: { error: "Unauthorized" },
     })
   }
-  console.log(amount)
+  
   // Use the new function to handle conversion and response
   const response = await handleCurrencyConversion({
     amount: parseFloat(amount),
     from: from,
     to: to,
   })
+
+  console.log("Response from handleCurrencyConversion:", response)
   return res.status(response.statusCode).json(response.body)
 }
